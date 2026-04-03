@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Doctor 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #e8556d;
+    --blush: #f9c4d0;
+    --deep: #7b1c3f;
+    --cream: #fff8f0;
+    --gold: #d4a847;
+    --mint: #a8d8c8;
+    --lavender: #c9b8e8;
+    --text: #2a1020;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--text);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 20px; height: 20px;
+    background: var(--rose);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, width 0.2s, height 0.2s, background 0.2s;
+    mix-blend-mode: multiply;
+  }
+  .cursor-ring {
+    width: 40px; height: 40px;
+    border: 2px solid var(--rose);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease, opacity 0.2s;
+    opacity: 0.5;
+  }
+
+  /* Floating hearts background */
+  .hearts-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .heart-float {
+    position: absolute;
+    font-size: 1.2rem;
+    animation: floatUp linear infinite;
+    opacity: 0;
+  }
+  @keyframes floatUp {
+    0% { opacity: 0; transform: translateY(100vh) rotate(0deg); }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.3; }
+    100% { opacity: 0; transform: translateY(-10vh) rotate(360deg); }
+  }
+
+  /* HERO SECTION */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+    padding: 2rem;
+    background: radial-gradient(ellipse at 30% 20%, #fce4ec 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, #f3e5f5 0%, transparent 50%),
+                var(--cream);
+  }
+
+  .stethoscope-crown {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: heartbeat 1.5s ease-in-out infinite;
+  }
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.15); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.1); }
+    60% { transform: scale(1); }
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--rose);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeSlideIn 1s ease forwards 0.3s;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    font-style: italic;
+    line-height: 0.95;
+    color: var(--deep);
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeSlideIn 1s ease forwards 0.6s;
+  }
+
+  .hero-title span {
+    color: var(--rose);
+    display: block;
+  }
+
+  .hero-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin: 1.5rem 0;
+    opacity: 0;
+    animation: fadeSlideIn 1s ease forwards 0.9s;
+  }
+
+  .hero-subtitle {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #7a5060;
+    max-width: 500px;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeSlideIn 1s ease forwards 1.2s;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeSlideIn 1s ease forwards 2s;
+  }
+  .scroll-hint span {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--rose);
+    text-transform: uppercase;
+  }
+  .scroll-arrow {
+    width: 2px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--rose), transparent);
+    animation: scrollPulse 1.5s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; transform: scaleY(1); }
+    50% { opacity: 0.4; transform: scaleY(0.7); }
+  }
+
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* MEDICAL LOVE SECTION */
+  .section {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 2rem;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--rose);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    text-align: center;
+    color: var(--deep);
+    margin-bottom: 3rem;
+    font-style: italic;
+  }
+
+  /* Medical Terms Cards */
+  .medical-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .med-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 4px 30px rgba(232, 85, 109, 0.08);
+    border: 1px solid rgba(232, 85, 109, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .med-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--rose), var(--lavender));
+  }
+  .med-card:hover {
+    transform: translateY(-6px) rotate(0.5deg);
+    box-shadow: 0 12px 40px rgba(232, 85, 109, 0.18);
+  }
+  .med-term {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--rose);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .med-word {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-style: italic;
+    color: var(--deep);
+    margin-bottom: 0.5rem;
+  }
+  .med-desc {
+    font-size: 1rem;
+    color: #7a5060;
+    line-height: 1.6;
+  }
+  .med-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+
+  /* LOVE QUOTES */
+  .quotes-section {
+    background: linear-gradient(135deg, #7b1c3f 0%, #c0395a 50%, #e8556d 100%);
+    color: white;
+    padding: 6rem 2rem;
+  }
+
+  .quote-carousel {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    min-height: 200px;
+  }
+
+  .quote-item {
+    display: none;
+    text-align: center;
+    animation: quoteFade 0.6s ease;
+  }
+  .quote-item.active { display: block; }
+
+  @keyframes quoteFade {
+    from { opacity: 0; transform: scale(0.97); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    line-height: 0.5;
+    color: rgba(255,255,255,0.2);
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .quote-attr {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .quote-nav {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: 2.5rem;
+  }
+
+  .q-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+  }
+  .q-dot.active {
+    background: white;
+    width: 24px;
+    border-radius: 4px;
+  }
+
+  .quote-btns {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .quote-btn {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.1);
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+  .quote-btn:hover {
+    background: rgba(255,255,255,0.25);
+    transform: scale(1.1);
+  }
+
+  /* DRAGGABLE GIRL EMOJIS / STICKERS */
+  .stickers-section {
+    padding: 6rem 2rem;
+    background: linear-gradient(160deg, #fce4ec 0%, #f3e5f5 50%, #e8f5e9 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sticker-board {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    height: 500px;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+
+  .sticker-board-bg {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(232,85,109,0.08) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  .sticker-hint {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(0,0,0,0.2);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    pointer-events: none;
+    text-align: center;
+    z-index: 0;
+  }
+
+  .sticker {
+    position: absolute;
+    font-size: 3.5rem;
+    cursor: grab;
+    user-select: none;
+    z-index: 10;
+    transition: transform 0.15s ease, filter 0.15s ease;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+  .sticker:hover { filter: drop-shadow(4px 8px 12px rgba(232,85,109,0.3)) brightness(1.05); }
+  .sticker.dragging { cursor: grabbing; transform: scale(1.2) rotate(5deg); z-index: 100; }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0) rotate(-20deg); }
+    to { opacity: 1; transform: scale(1) rotate(0deg); }
+  }
+
+  .add-sticker-btn {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .sticker-add-btn {
+    padding: 0.6rem 1.2rem;
+    border: 2px dashed var(--rose);
+    border-radius: 100px;
+    background: white;
+    color: var(--rose);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .sticker-add-btn:hover {
+    background: var(--rose);
+    color: white;
+    transform: scale(1.05);
+  }
+
+  /* LETTER SECTION */
+  .letter-section {
+    padding: 6rem 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .letter-paper {
+    background: white;
+    border-radius: 4px;
+    padding: 3rem 3.5rem;
+    box-shadow: 4px 4px 0 var(--blush), 8px 8px 0 rgba(232,85,109,0.1);
+    position: relative;
+    line-height: 1.9;
+  }
+
+  .letter-paper::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 3.5rem;
+    width: 2px;
+    height: 100%;
+    background: rgba(232,85,109,0.15);
+  }
+
+  .letter-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--rose);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    text-align: right;
+  }
+
+  .letter-salutation {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-style: italic;
+    color: var(--deep);
+    margin-bottom: 1.5rem;
+  }
+
+  .letter-body {
+    font-size: 1.05rem;
+    color: #5a3a4a;
+    line-height: 2;
+    margin-bottom: 2rem;
+  }
+
+  .letter-sign {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--rose);
+    text-align: right;
+  }
+
+  /* ECG LINE */
+  .ecg-divider {
+    width: 100%;
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .ecg-svg {
+    width: 600px;
+    max-width: 100%;
+    height: 60px;
+    overflow: visible;
+  }
+  .ecg-path {
+    fill: none;
+    stroke: var(--rose);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+    animation: ecgDraw 3s ease-in-out infinite;
+  }
+  @keyframes ecgDraw {
+    0% { stroke-dashoffset: 1200; opacity: 1; }
+    70% { stroke-dashoffset: 0; opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: 0.3; }
+  }
+
+  /* FIREWORKS CANVAS */
+  #fireworks-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9990;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* COUNTDOWN / BIRTHDAY BAR */
+  .birthday-bar {
+    background: var(--deep);
+    color: white;
+    text-align: center;
+    padding: 1.2rem 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    position: relative;
+    z-index: 100;
+  }
+  .birthday-bar span { color: var(--blush); }
+
+  /* FOOTER */
+  .footer {
+    background: var(--deep);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 3rem 2rem;
+    font-size: 0.95rem;
+    font-style: italic;
+  }
+  .footer strong { color: var(--blush); }
+
+  /* Pulse ring animation */
+  .pulse-ring {
+    display: inline-block;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: var(--rose);
+    position: relative;
+    animation: pulseAnim 2s ease-out infinite;
+  }
+  @keyframes pulseAnim {
+    0% { box-shadow: 0 0 0 0 rgba(232,85,109,0.5); }
+    70% { box-shadow: 0 0 0 30px rgba(232,85,109,0); }
+    100% { box-shadow: 0 0 0 0 rgba(232,85,109,0); }
+  }
+
+  /* Reveal on scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Sparkle effect */
+  .sparkle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    font-size: 1.2rem;
+    animation: sparkleFly 1s ease-out forwards;
+  }
+  @keyframes sparkleFly {
+    0% { opacity: 1; transform: translate(0, 0) scale(1); }
+    100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0); }
+  }
+
+  /* Prescription card */
+  .rx-card {
+    background: white;
+    border: 2px solid var(--rose);
+    border-radius: 15px;
+    padding: 2rem;
+    max-width: 500px;
+    margin: 2rem auto;
+    position: relative;
+    box-shadow: 5px 5px 0 var(--blush);
+  }
+  .rx-card::before {
+    content: 'Rx';
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-style: italic;
+    color: var(--blush);
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+  }
+  .rx-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--rose);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--blush);
+  }
+  .rx-item {
+    font-size: 1rem;
+    color: #5a3a4a;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .rx-item::before { content: '→'; color: var(--rose); flex-shrink: 0; }
+  .rx-sig {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--deep);
+    border-top: 1px solid var(--blush);
+    padding-top: 1rem;
+    margin-top: 1rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .letter-paper { padding: 2rem 1.5rem 2rem 2.5rem; }
+    .sticker-board { height: 380px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Fireworks canvas -->
+<canvas id="fireworks-canvas"></canvas>
+
+<!-- Floating hearts background -->
+<div class="hearts-bg" id="heartsBg"></div>
+
+<!-- Birthday countdown bar -->
+<div class="birthday-bar">
+  🎂 <span id="countdown-text">Counting down to 29th April...</span> — For the most beautiful future Doctor 🩺
+</div>
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<section class="hero">
+  <div class="stethoscope-crown">🩺💖</div>
+  <p class="hero-eyebrow">A love prescription for</p>
+  <h1 class="hero-title">
+    Happy Birthday
+    <span>Doctor</span>
+  </h1>
+  <p class="hero-date">⟡ 29th April ⟡ The Day Heaven Sent You ⟡</p>
+  <p class="hero-subtitle">To the girl who is healing the world with her mind & my heart with her smile.</p>
+
+  <div class="scroll-hint">
+    <span>Scroll to feel the love</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ECG DIVIDER -->
+<div class="ecg-divider">
+  <svg class="ecg-svg" viewBox="0 0 600 60">
+    <path class="ecg-path" d="M0,30 L80,30 L100,30 L110,5 L120,55 L130,5 L140,30 L160,30 L170,20 L180,30 L200,30 L280,30 L300,30 L310,5 L320,55 L330,5 L340,30 L360,30 L370,20 L380,30 L400,30 L480,30 L500,30 L510,5 L520,55 L530,5 L540,30 L560,30 L570,20 L580,30 L600,30"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════════════════ MEDICAL LOVE TERMS ═══════════════════════════════ -->
+<section class="section">
+  <p class="section-label reveal">Medical Love Diagnosis</p>
+  <h2 class="section-title reveal">You Have Completely<br>Infected My Heart</h2>
+
+  <div class="medical-grid">
+    <div class="med-card reveal">
+      <div class="med-icon">❤️‍🩹</div>
+      <div class="med-term">Condition 01</div>
+      <div class="med-word">Cardiomegaly</div>
+      <div class="med-desc">Clinically proven: my heart has enlarged beyond normal capacity — the direct result of loving you.</div>
+    </div>
+    <div class="med-card reveal">
+      <div class="med-icon">🧬</div>
+      <div class="med-term">Condition 02</div>
+      <div class="med-word">Oxytocin Surge</div>
+      <div class="med-desc">Every time you walk into the room, my oxytocin levels spike dangerously. There is no antidote.</div>
+    </div>
+    <div class="med-card reveal">
+      <div class="med-icon">🔬</div>
+      <div class="med-term">Condition 03</div>
+      <div class="med-word">Neurotransmitter Rush</div>
+      <div class="med-desc">Dopamine, serotonin, norepinephrine — you trigger them all. My brain is permanently rewired for you.</div>
+    </div>
+    <div class="med-card reveal">
+      <div class="med-icon">🩺</div>
+      <div class="med-term">Condition 04</div>
+      <div class="med-word">Auscultation</div>
+      <div class="med-desc">If you put a stethoscope to my chest, you'd hear only one word beating: your name, over and over.</div>
+    </div>
+    <div class="med-card reveal">
+      <div class="med-icon">💊</div>
+      <div class="med-term">Condition 05</div>
+      <div class="med-word">Idiopathic Euphoria</div>
+      <div class="med-desc">Medical mystery: I am inexplicably happy for no reason — except the reason is always you.</div>
+    </div>
+    <div class="med-card reveal">
+      <div class="med-icon">🌡️</div>
+      <div class="med-term">Condition 06</div>
+      <div class="med-word">Tachycardia</div>
+      <div class="med-desc">Clinical finding: heart rate elevates significantly whenever you smile at me. No treatment required.</div>
+    </div>
+    <div class="med-card reveal">
+      <div class="med-icon">🧠</div>
+      <div class="med-term">Condition 07</div>
+      <div class="med-word">Neural Plasticity</div>
+      <div class="med-desc">You have reshaped every neural pathway. My brain's default state is thinking about you.</div>
+    </div>
+    <div class="med-card reveal">
+      <div class="med-icon">⚕️</div>
+      <div class="med-term">Condition 08</div>
+      <div class="med-word">Prognosis: Eternal</div>
+      <div class="med-desc">Long-term outlook: this love is chronic, irreversible, and the most beautiful thing I have ever been diagnosed with.</div>
+    </div>
+  </div>
+
+  <!-- PRESCRIPTION -->
+  <div class="rx-card reveal" style="margin-top:3rem">
+    <div class="rx-title">Prescription for: My Doctor 💕 | Date: 29th April</div>
+    <div class="rx-item">Unconditional love — to be taken every morning with coffee ☕</div>
+    <div class="rx-item">1000mg of cuddles — especially after long study sessions 📚</div>
+    <div class="rx-item">Infinite patience — for all the nights she stayed up reading anatomy 🦴</div>
+    <div class="rx-item">Daily pride — for a woman who will save lives with her hands 🙌</div>
+    <div class="rx-item">Birthday magic — dosage: unlimited, refills: forever 🎂</div>
+    <div class="rx-sig">Sig: To be taken with a smile, always. — Your favorite person 💌</div>
+  </div>
+</section>
+
+<!-- ECG DIVIDER -->
+<div class="ecg-divider" style="background: linear-gradient(135deg, #7b1c3f, #e8556d);">
+  <svg class="ecg-svg" viewBox="0 0 600 60">
+    <path class="ecg-path" style="stroke: white;" d="M0,30 L80,30 L100,30 L110,5 L120,55 L130,5 L140,30 L160,30 L170,20 L180,30 L200,30 L280,30 L300,30 L310,5 L320,55 L330,5 L340,30 L360,30 L370,20 L380,30 L400,30 L480,30 L500,30 L510,5 L520,55 L530,5 L540,30 L560,30 L570,20 L580,30 L600,30"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════════════════ LOVE QUOTES ═══════════════════════════════ -->
+<section class="quotes-section">
+  <p class="section-label" style="color: rgba(255,255,255,0.6)">Love Letters in Words</p>
+  <h2 class="section-title" style="color: white; margin-bottom: 2rem;">What My Heart Says</h2>
+
+  <div class="quote-carousel">
+    <div class="quote-item active">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">You are studying how to heal hearts, but love — you already healed mine the moment I met you.</p>
+      <p class="quote-attr">— Written for you, with every heartbeat</p>
+    </div>
+    <div class="quote-item">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">One day you will wear that white coat and the world will see what I have always known — that you are extraordinary.</p>
+      <p class="quote-attr">— Your proudest admirer</p>
+    </div>
+    <div class="quote-item">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">Every page of your textbooks, every sleepless night studying — I see your dedication and fall more in love with you each time.</p>
+      <p class="quote-attr">— Someone who believes in you completely</p>
+    </div>
+    <div class="quote-item">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">They say doctors save lives. My Doctor — you saved mine, simply by being in it.</p>
+      <p class="quote-attr">— Your forever patient 💖</p>
+    </div>
+    <div class="quote-item">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">Happy birthday to the girl who will change the world. But first — know that you have already changed mine, completely and beautifully.</p>
+      <p class="quote-attr">— 29th April, written with love</p>
+    </div>
+    <div class="quote-item">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">You memorize muscles and bones, but you are the anatomy I have studied most — every smile, every laugh, every look.</p>
+      <p class="quote-attr">— A love that needs no textbook</p>
+    </div>
+    <div class="quote-item">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">I love you in ways no stethoscope could measure and no MRI could scan. You live in the part of me that medicine cannot touch.</p>
+      <p class="quote-attr">— Written from the heart, for your heart</p>
+    </div>
+  </div>
+
+  <div class="quote-btns">
+    <button class="quote-btn" id="prevQuote">←</button>
+    <button class="quote-btn" id="nextQuote">→</button>
+  </div>
+  <div class="quote-nav" id="quoteDots"></div>
+</section>
+
+<!-- ═══════════════════════════════ STICKER BOARD ═══════════════════════════════ -->
+<section class="stickers-section">
+  <p class="section-label reveal">Play with love</p>
+  <h2 class="section-title reveal">Our Little Love Board 🎀</h2>
+  <p style="text-align:center; font-style:italic; color:#7a5060; margin-bottom:2rem;" class="reveal">Drag the stickers around! Add more with the buttons below 💕</p>
+
+  <div class="sticker-board" id="stickerBoard">
+    <div class="sticker-board-bg"></div>
+    <div class="sticker-hint">Drag me around! ✨</div>
+    <!-- Initial stickers placed by JS -->
+  </div>
+
+  <div class="add-sticker-btn">
+    <button class="sticker-add-btn" data-emoji="👩‍⚕️">+ Doctor Girl</button>
+    <button class="sticker-add-btn" data-emoji="💖">+ Heart</button>
+    <button class="sticker-add-btn" data-emoji="🌸">+ Flower</button>
+    <button class="sticker-add-btn" data-emoji="⭐">+ Star</button>
+    <button class="sticker-add-btn" data-emoji="🦋">+ Butterfly</button>
+    <button class="sticker-add-btn" data-emoji="🎂">+ Cake</button>
+    <button class="sticker-add-btn" data-emoji="🩺">+ Stethoscope</button>
+    <button class="sticker-add-btn" data-emoji="💐">+ Flowers</button>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ LOVE LETTER ═══════════════════════════════ -->
+<section class="letter-section">
+  <p class="section-label reveal">A handwritten note</p>
+  <h2 class="section-title reveal">Dearest Doctor,</h2>
+
+  <div class="letter-paper reveal">
+    <div class="letter-date">29th April — Your Birthday 🌹</div>
+    <div class="letter-salutation">My Dearest Doctor,</div>
+    <div class="letter-body">
+      <p>On this most beautiful day, I want you to know what you mean to me — not in textbook language, not in clinical terms, but in the rawest language my heart knows.</p>
+      <br>
+      <p>You chose a path that demands everything of you. You gave up sleep so you could give others life. You opened heavy books when the world was having fun. And still — <em>still</em> — you smiled like the sun rose just to visit you.</p>
+      <br>
+      <p>I am so incredibly proud of you. Not just the doctor you are becoming, but the <em>person</em> you already are. Brilliant, caring, unstoppable.</p>
+      <br>
+      <p>My love for you is not a symptom. It is not a side effect. It is the most certain diagnosis I have ever had: <em>I am completely, irrevocably, wonderfully in love with you.</em></p>
+      <br>
+      <p>Happy Birthday, Doctor. May this year bring you everything you deserve — which is nothing less than the world. 🌍</p>
+    </div>
+    <div class="letter-sign">Forever yours, with all my heart 💕</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  Made with 💖 for the most wonderful <strong>Doctor</strong> in the world<br>
+  <small style="opacity:0.5; font-size:0.75rem; display:block; margin-top:0.5rem; font-family: 'DM Mono', monospace; letter-spacing:0.1em">29 · 04 · FOREVER</small>
+</div>
+
+<!-- ═══════════════════════════════ JAVASCRIPT ═══════════════════════════════ -->
+<script>
+// ── CUSTOM CURSOR ──
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px';
+  cursor.style.top = my + 'px';
+});
+
+function animateRing() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) *.12;
+  cursorRing.style.left = rx + 'px';
+  cursorRing.style.top = ry + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+// ── SPARKLE ON CLICK ──
+document.addEventListener('click', e => {
+  const emojis = ['✨','💖','🌸','⭐','💕','🌟','💫'];
+  for (let i = 0; i < 6; i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    s.style.left = e.clientX + 'px';
+    s.style.top = e.clientY + 'px';
+    const angle = (Math.PI * 2 * i) / 6;
+    const dist = 60 + Math.random() * 40;
+    s.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
+    s.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 1000);
+  }
+});
+
+// ── FLOATING HEARTS BG ──
+const heartsBg = document.getElementById('heartsBg');
+const heartSymbols = ['💖','💕','🌸','💗','✨','💓','🌺','💝'];
+for (let i = 0; i < 22; i++) {
+  const h = document.createElement('div');
+  h.className = 'heart-float';
+  h.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+  h.style.left = Math.random() * 100 + '%';
+  h.style.fontSize = (0.8 + Math.random() * 1.2) + 'rem';
+  h.style.animationDuration = (8 + Math.random() * 12) + 's';
+  h.style.animationDelay = (Math.random() * 15) + 's';
+  heartsBg.appendChild(h);
+}
+
+// ── COUNTDOWN ──
+function updateCountdown() {
+  const now = new Date();
+  const thisYear = now.getFullYear();
+  let bday = new Date(thisYear, 3, 29); // April 29
+  if (now > bday) bday = new Date(thisYear + 1, 3, 29);
+  const diff = bday - now;
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const mins = Math.floor((diff % 3600000) / 60000);
+  const el = document.getElementById('countdown-text');
+  if (days === 0 && hours === 0) {
+    el.textContent = '🎉 TODAY IS THE DAY! HAPPY BIRTHDAY DOCTOR! 🎉';
+    launchFireworks();
+  } else if (days === 0) {
+    el.innerHTML = `Only <strong style="color:var(--blush)">${hours}h ${mins}m</strong> until the most special birthday!`;
+  } else {
+    el.innerHTML = `<strong style="color:var(--blush)">${days} days, ${hours} hours</strong> until your special day, Doctor 💖`;
+  }
+}
+updateCountdown();
+setInterval(updateCountdown, 60000);
+
+// ── QUOTE CAROUSEL ──
+const quotes = document.querySelectorAll('.quote-item');
+const dotsContainer = document.getElementById('quoteDots');
+let currentQ = 0;
+let quoteTimer;
+
+quotes.forEach((_, i) => {
+  const dot = document.createElement('button');
+  dot.className = 'q-dot' + (i === 0 ? ' active' : '');
+  dot.addEventListener('click', () => goToQuote(i));
+  dotsContainer.appendChild(dot);
+});
+
+function goToQuote(n) {
+  quotes[currentQ].classList.remove('active');
+  dotsContainer.children[currentQ].classList.remove('active');
+  currentQ = (n + quotes.length) % quotes.length;
+  quotes[currentQ].classList.add('active');
+  dotsContainer.children[currentQ].classList.add('active');
+  resetTimer();
+}
+
+function resetTimer() {
+  clearInterval(quoteTimer);
+  quoteTimer = setInterval(() => goToQuote(currentQ + 1), 4500);
+}
+
+document.getElementById('prevQuote').addEventListener('click', () => goToQuote(currentQ - 1));
+document.getElementById('nextQuote').addEventListener('click', () => goToQuote(currentQ + 1));
+resetTimer();
+
+// ── REVEAL ON SCROLL ──
+const reveals = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(r => revealObserver.observe(r));
+
+// ── DRAGGABLE STICKERS ──
+const board = document.getElementById('stickerBoard');
+const initialStickers = [
+  { emoji: '👩‍⚕️', x: 20, y: 30, delay: 0 },
+  { emoji: '💖', x: 55, y: 20, delay: 100 },
+  { emoji: '🩺', x: 75, y: 50, delay: 200 },
+  { emoji: '🌸', x: 35, y: 60, delay: 300 },
+  { emoji: '🎂', x: 60, y: 65, delay: 400 },
+  { emoji: '⭐', x: 15, y: 55, delay: 500 },
+  { emoji: '💊', x: 45, y: 40, delay: 600 },
+  { emoji: '🦋', x: 80, y: 25, delay: 700 },
+];
+
+function createSticker(emoji, xPct, yPct, delay = 0) {
+  const s = document.createElement('div');
+  s.className = 'sticker';
+  s.textContent = emoji;
+  s.style.left = xPct + '%';
+  s.style.top = yPct + '%';
+  s.style.animationDelay = delay + 'ms';
+  makeDraggable(s);
+  board.appendChild(s);
+  return s;
+}
+
+initialStickers.forEach(d => createSticker(d.emoji, d.x, d.y, d.delay));
+
+function makeDraggable(el) {
+  let dragging = false, startX, startY, startLeft, startTop;
+
+  function getPos(e) {
+    if (e.touches) return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    return { x: e.clientX, y: e.clientY };
+  }
+
+  function onStart(e) {
+    dragging = true;
+    el.classList.add('dragging');
+    const pos = getPos(e);
+    startX = pos.x;
+    startY = pos.y;
+    const rect = board.getBoundingClientRect();
+    startLeft = (parseFloat(el.style.left) / 100) * rect.width;
+    startTop = (parseFloat(el.style.top) / 100) * rect.height;
+    e.preventDefault();
+  }
+
+  function onMove(e) {
+    if (!dragging) return;
+    const pos = getPos(e);
+    const rect = board.getBoundingClientRect();
+    const dx = pos.x - startX;
+    const dy = pos.y - startY;
+    const newLeft = Math.max(0, Math.min(rect.width - 50, startLeft + dx));
+    const newTop = Math.max(0, Math.min(rect.height - 50, startTop + dy));
+    el.style.left = (newLeft / rect.width * 100) + '%';
+    el.style.top = (newTop / rect.height * 100) + '%';
+  }
+
+  function onEnd() {
+    dragging = false;
+    el.classList.remove('dragging');
+  }
+
+  el.addEventListener('mousedown', onStart);
+  el.addEventListener('touchstart', onStart, { passive: false });
+  document.addEventListener('mousemove', onMove);
+  document.addEventListener('touchmove', onMove, { passive: false });
+  document.addEventListener('mouseup', onEnd);
+  document.addEventListener('touchend', onEnd);
+}
+
+document.querySelectorAll('.sticker-add-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const emoji = btn.dataset.emoji;
+    const x = 10 + Math.random() * 70;
+    const y = 10 + Math.random() * 70;
+    createSticker(emoji, x, y);
+  });
+});
+
+// ── FIREWORKS ──
+const canvas = document.getElementById('fireworks-canvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+let particles = [];
+let fireworksActive = false;
+
+class Particle {
+  constructor(x, y, color) {
+    this.x = x; this.y = y;
+    const angle = Math.random() * Math.PI * 2;
+    const speed = 2 + Math.random() * 5;
+    this.vx = Math.cos(angle) * speed;
+    this.vy = Math.sin(angle) * speed;
+    this.alpha = 1;
+    this.color = color;
+    this.size = 3 + Math.random() * 4;
+    this.gravity = 0.08;
+  }
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.vy += this.gravity;
+    this.alpha -= 0.015;
+    this.vx *= 0.98;
+  }
+  draw() {
+    ctx.save();
+    ctx.globalAlpha = this.alpha;
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+}
+
+function explode(x, y) {
+  const colors = ['#e8556d','#f9c4d0','#d4a847','#c9b8e8','#a8d8c8','#fff'];
+  for (let i = 0; i < 80; i++) {
+    particles.push(new Particle(x, y, colors[Math.floor(Math.random() * colors.length)]));
+  }
+}
+
+function animateFireworks() {
+  if (!fireworksActive) return;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles = particles.filter(p => p.alpha > 0);
+  particles.forEach(p => { p.update(); p.draw(); });
+  requestAnimationFrame(animateFireworks);
+}
+
+function launchFireworks() {
+  fireworksActive = true;
+  animateFireworks();
+  let count = 0;
+  const burst = setInterval(() => {
+    const x = Math.random() * canvas.width;
+    const y = Math.random() * canvas.height * 0.6;
+    explode(x, y);
+    count++;
+    if (count > 20) clearInterval(burst);
+  }, 300);
+}
+
+// Trigger small fireworks on page load for delight
+setTimeout(() => {
+  for (let i = 0; i < 5; i++) {
+    setTimeout(() => {
+      if (!fireworksActive) { fireworksActive = true; animateFireworks(); }
+      explode(
+        canvas.width * (0.2 + Math.random() * 0.6),
+        canvas.height * (0.1 + Math.random() * 0.4)
+      );
+    }, i * 400);
+  }
+}, 1500);
+</script>
+</body>
+</html>
